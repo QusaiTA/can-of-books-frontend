@@ -1,7 +1,14 @@
 import React from 'react';
 import Header from './Header';
 import IsLoadingAndError from './IsLoadingAndError';
+import BestBooks from './BestBooks';
+import Profile from './component/Profile'
+import { withAuth0 } from '@auth0/auth0-react';
+
+
 import Footer from './Footer';
+import Login from './Login';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +19,7 @@ class App extends React.Component {
 
   render() {
     console.log('app', this.props);
+    // const {isAuthenticated} = this.props.auth0;
     return(
       <>
         <Router>
@@ -19,9 +27,20 @@ class App extends React.Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                {/* TODO: if the user is logged in, render the `BestBooks` component, if they are not, render the `Login` component */}
-              </Route>
+
+                {
+                  this.props.auth0.isAuthenticated ? <BestBooks/> : <Login/>
+                }
+                
+                  </Route>
+                  <Route exact path = "/profile">
+                  {
+                   <Profile/>
+                }
+                
+              </Route >
               {/* TODO: add a route with a path of '/profile' that renders a `Profile` component */}
+
             </Switch>
             <Footer />
           </IsLoadingAndError>
@@ -31,4 +50,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withAuth0(App);
