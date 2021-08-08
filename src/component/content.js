@@ -47,7 +47,7 @@ export class Content extends Component {
         this.setState({
           user: axiosResponse.data
         })
-      }).catch(error => alert(error))
+      })
 
     }).catch(error => console.log(error));
   };
