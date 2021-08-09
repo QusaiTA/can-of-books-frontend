@@ -3,7 +3,7 @@ import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
 export class Content extends Component {
- 
+
   constructor(props) {
     super(props);
 
@@ -13,16 +13,10 @@ export class Content extends Component {
   }
 
   componentDidMount = () => {
-    // the function getIdTokenClaims is a promise based function
     this.props.auth0.getIdTokenClaims().then(tokenResponse => {
 
       const jwt = tokenResponse.__raw;
-      // console.log(tokenResponse);
-      // console.log(jwt);
-
-      // once we got the token, now we can send token in the headers with our request to our backend URL
-
-      // to send tokens in the headers with axios, we will create a config object
+ 
 
       const config = {
         headers: {
@@ -34,16 +28,22 @@ export class Content extends Component {
       };
 
       axios(config).then((axiosResponse) => {
-        // console.log('backend data', axiosResponse.data);
 
         this.setState({
           user: axiosResponse.data
+
         })
       })
       .catch(error => alert(error))
 
+
+        }).catch(error => alert(error))
+
     }).catch(error => console.log(error));
-  };
+      
+    }
+    )}
+    
 
   render() {
     return (
