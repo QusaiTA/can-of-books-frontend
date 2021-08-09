@@ -34,15 +34,17 @@ export class Content extends Component {
 
         })
       })
-      .catch(error => alert(error))
 
-
-        }).catch(error => alert(error))
-
-    }).catch(error => console.log(error));
-      
     }
-    )}
+  }
+    //   .catch(error => alert(error))
+
+
+    //     }).catch(error => alert(error))
+
+    // }).catch(error => console.log(error));
+      
+
     
 
   render() {
