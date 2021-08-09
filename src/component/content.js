@@ -12,11 +12,11 @@ export class Content extends Component {
     }
   }
 
-  componentDidMount = () => {
+
+  componentDidMount = () => { 
     this.props.auth0.getIdTokenClaims().then(tokenResponse => {
 
       const jwt = tokenResponse.__raw;
- 
 
       const config = {
         headers: {
@@ -28,23 +28,13 @@ export class Content extends Component {
       };
 
       axios(config).then((axiosResponse) => {
-
         this.setState({
           user: axiosResponse.data
-
         })
-      })
-      .catch(error => alert(error))
-
-
-        }).catch(error => alert(error))
+      }).catch(error => alert(error))
 
     }).catch(error => console.log(error));
-      
-    }
-    )}
-    
-
+  };
   render() {
     return (
       <div>
