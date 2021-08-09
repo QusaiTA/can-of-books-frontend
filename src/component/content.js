@@ -3,7 +3,6 @@ import { withAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
 
 export class Content extends Component {
-  
 
   constructor(props) {
     super(props);
@@ -32,7 +31,14 @@ export class Content extends Component {
 
         this.setState({
           user: axiosResponse.data
+
+        })
+      })
+      .catch(error => alert(error))
+
+
         }).catch(error => alert(error))
+
     }).catch(error => console.log(error));
       
     }
@@ -43,7 +49,7 @@ export class Content extends Component {
     return (
       <div>
         <p>
-          Component Loaded!
+         RENDER DATA
         </p>
         {
           this.state.user.nickname &&
